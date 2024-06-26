@@ -20,17 +20,26 @@ async function fetchMovies() {
 }
 
 function createMovieCard(media) {
-    const { title, name, backdrop_path, release_date } = media;
+    const { title, name, backdrop_path, release_date, overview, vote_average } = media;
 
     const movieCard = document.createElement("div");
     movieCard.classList.add("movie_item");
 
     movieCard.innerHTML = `
-        <img src="https://image.tmdb.org/t/p/w500/${backdrop_path}" class="movie_img_rounded">
+        <div class="movie_image_container">
+            <img src="https://image.tmdb.org/t/p/w500/${backdrop_path}" class="movie_img_rounded">
+            <div class="movie_details">
+                <div class="overview">${overview}</div>
+                <div class="vote_average">Rating: ${vote_average}</div>
+            </div>
+        </div>
         <div class="title">${title || name}</div>
         <div class="release_date">${release_date}</div>
     `;
     return movieCard;
 }
+
+
+
 
 fetchMovies();
